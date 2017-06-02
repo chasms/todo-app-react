@@ -51,7 +51,12 @@ app.delete('/todos/:id', function(req, res) {
   var index = todos.findIndex( todo => {
     return todo.id === id;
   });
+  if (index < 0 || index >= todos.length) {
+    return res.status(400).json({"message": "invalid index"});
+  }
+  todos.splice(index, 1);
 
+  res.json(todos);
 });
 
 app.put('/todos/:id', function(req, res) {
@@ -59,7 +64,8 @@ app.put('/todos/:id', function(req, res) {
   var index = todos.findIndex( todo => {
     return todo.id === id;
   });
-  todos[index].status === 'active' ? 'complete' : 'active'
+
+  todos[index].status === 'active' ? 'complete' : 'active';
 
   res.json(todos);
 });
