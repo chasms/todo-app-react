@@ -47,11 +47,21 @@ app.post('/todos', function(req, res) {
 });
 
 app.delete('/todos/:id', function(req, res) {
-  res.status(500).send({"message": "not implemented"});
+  var id = req.params.id;
+  var index = todos.findIndex( todo => {
+    return todo.id === id;
+  });
+
 });
 
 app.put('/todos/:id', function(req, res) {
-  res.status(500).send({"message": "not implemented"});
+  var id = req.params.id;
+  var index = todos.findIndex( todo => {
+    return todo.id === id;
+  });
+  todos[index].status === 'active' ? 'complete' : 'active'
+
+  res.json(todos);
 });
 
 // Node server.
