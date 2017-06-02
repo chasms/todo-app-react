@@ -25,6 +25,7 @@ newTodo('implement front end delete', 'complete')
 newTodo('implement front end put')
 newTodo('implement archive')
 newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'complete')
+newTodo('make updates in front end state consistent with server updates')
 
 
 app.get('/', function(req, res) {
