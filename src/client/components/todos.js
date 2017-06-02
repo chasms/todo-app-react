@@ -47,8 +47,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
 
     updateTodos(
       [
-        ...todos.slice(0, index),
-        ...todos.slice(index + 1),
+        todos.splice(index, 1)
       ]
     );
   }

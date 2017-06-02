@@ -42,7 +42,6 @@ class TodosPage extends React.Component {
     };
 
     this.addTodo = this.addTodo.bind(this);
-    this.postTodo = this.postTodo.bind(this);
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
   }
@@ -64,18 +63,7 @@ class TodosPage extends React.Component {
       return;
     }
 
-    api('POST', { text }, this.postTodo);
-  }
-
-  /**
-   * Posts new todo to the todos collection
-   *
-   * @param  {object} json - Resulting JSON from fetch
-   */
-  postTodo(json) {
-    this.setState({
-      todos: [...json],
-    });
+    api('POST', { text }, this.updateTodos);
   }
 
   /**
@@ -90,11 +78,11 @@ class TodosPage extends React.Component {
   /**
    * Update todos array state
    *
-   * @param  {Array} todos - Array of todo objects
+   * @param  {object} json - Resulting JSON from fetch
    */
-  updateTodos(todos) {
+  updateTodos(json) {
     this.setState({
-      todos: todos
+      todos: [...json],
     });
   }
 

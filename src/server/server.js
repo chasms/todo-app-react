@@ -9,10 +9,23 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var todos = [
-  {"id": 1, "text": "Hello, world!"},
-  {"id": 2, "text": "Pick up groceries", "status": "complete"}
-];
+var todos = [];
+var id = 1
+
+function newTodo(text, status = 'active') {
+  let todo = {"id": id++, "text": text, "status": status}
+  todos.push(todo)
+  return todo
+}
+
+newTodo('fix rendering on pageload', 'complete')
+newTodo('implement server-side delete', 'complete')
+newTodo('implement server-side put', 'complete')
+newTodo('implement front end delete', 'complete')
+newTodo('implement front end put')
+newTodo('implement archive')
+newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'complete')
+
 
 app.get('/', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
@@ -43,9 +56,7 @@ app.post('/todos', function(req, res) {
     return res.status(400).json({"message": "text is required"});
   }
 
-  var id = todos.length + 1;
-  var newTodo = { "id": id, "text": text, "status": "active" };
-  todos.push(newTodo);
+  newTodo(text);
 
   res.json(todos);
 });
@@ -59,7 +70,8 @@ app.delete('/todos/:id', function(req, res) {
   if (index < 0 || index >= todos.length) {
     return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
   }
-  todos.splice(index, 1);
+
+  todos.splice(index, 1)
 
   res.json(todos);
 });
@@ -74,7 +86,7 @@ app.put('/todos/:id', function(req, res) {
     return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
   }
 
-  todos[index].status === 'active' ? 'complete' : 'active';
+  todos[index].status = (todos[index].status === 'active' ? 'complete' : 'active');
 
   res.json(todos);
 });
