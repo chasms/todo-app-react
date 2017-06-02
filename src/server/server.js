@@ -25,12 +25,16 @@ app.get('/todos', function(req, res) {
 });
 
 app.get('/todos/:id', function(req, res) {
-  var id = req.params.id;
+  var id = parseInt(req.params.id);
   var index = todos.findIndex(function(todo) {
     return todo.id === id;
   });
 
-  res.json(JSON.stringify(todos[index]));
+  if (index < 0 || index >= todos.length) {
+    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
+  }
+
+  res.json(todos[index]);
 });
 
 app.post('/todos', function(req, res) {
@@ -47,12 +51,13 @@ app.post('/todos', function(req, res) {
 });
 
 app.delete('/todos/:id', function(req, res) {
-  var id = req.params.id;
+  var id = parseInt(req.params.id);
   var index = todos.findIndex( todo => {
     return todo.id === id;
   });
+
   if (index < 0 || index >= todos.length) {
-    return res.status(400).json({"message": "invalid index"});
+    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
   }
   todos.splice(index, 1);
 
@@ -60,10 +65,14 @@ app.delete('/todos/:id', function(req, res) {
 });
 
 app.put('/todos/:id', function(req, res) {
-  var id = req.params.id;
+  var id = parseInt(req.params.id);
   var index = todos.findIndex( todo => {
     return todo.id === id;
   });
+
+  if (index < 0 || index >= todos.length) {
+    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
+  }
 
   todos[index].status === 'active' ? 'complete' : 'active';
 
