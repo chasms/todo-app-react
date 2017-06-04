@@ -50,7 +50,9 @@ app.get('/todos/:id', function(req, res) {
   });
 
   if (index < 0 || index >= todos.length) {
-    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
+    return res.status(400).json({
+      "message": `invalid id ${id} type ${typeof(id)} at index ${index}`
+    });
   }
 
   res.json(todos[index]);
@@ -62,9 +64,9 @@ app.post('/todos', function(req, res) {
     return res.status(400).json({"message": "text is required"});
   }
 
-  newTodo(text);
+  todo = newTodo(text);
 
-  res.json(todos);
+  res.json(todo);
 });
 
 app.delete('/todos/:id', function(req, res) {
@@ -74,12 +76,15 @@ app.delete('/todos/:id', function(req, res) {
   });
 
   if (index < 0 || index >= todos.length) {
-    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
+    return res.status(400).json({
+      "message": `invalid id ${id} type ${typeof(id)} at index ${index}`
+    });
   }
 
+  let todo = todos[index]
   todos.splice(index, 1)
 
-  res.json(todos);
+  res.json(todo);
 });
 
 app.put('/todos/:id', function(req, res) {
@@ -89,12 +94,14 @@ app.put('/todos/:id', function(req, res) {
   });
 
   if (index < 0 || index >= todos.length) {
-    return res.status(400).json({"message": `invalid id ${id} type ${typeof(id)} at index ${index}`});
+    return res.status(400).json({
+      "message": `invalid id ${id} type ${typeof(id)} at index ${index}`
+    });
   }
 
   todos[index].status = (todos[index].status === 'active' ? 'complete' : 'active');
 
-  res.json(todos);
+  res.json(todos[index]);
 });
 
 // Node server.

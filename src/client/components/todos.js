@@ -65,7 +65,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     updateTodos(
       [
         ...todos.slice(0, index),
-        json,
+        ...json,
         ...todos.slice(index + 1),
       ]
     );
