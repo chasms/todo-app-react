@@ -1,9 +1,0 @@
-* todos do not render upon pageload FIXED by removing stringify from the /todos GET
-  * not triggered by clicking MyTodos or any subcategory
-  * seems only to trigger by adding new todo
-* delete does not work
-  * implement/fix delete logic
-* no way to set completed
-  * implement checkbox
-* Routes not showing up other than IndexRoute
-  * implement routes, connect to filtered categories

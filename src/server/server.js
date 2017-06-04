@@ -22,10 +22,15 @@ newTodo('fix rendering on pageload', 'complete')
 newTodo('implement server-side delete', 'complete')
 newTodo('implement server-side put', 'complete')
 newTodo('implement front end delete', 'complete')
-newTodo('implement front end put')
-newTodo('implement archive')
 newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'complete')
+newTodo('implement front end put')
+newTodo('implement archive function server-side')
+newTodo('implement archive button and front end logic')
 newTodo('make updates in front end state consistent with server updates')
+newTodo('style front end')
+newTodo('implement routing system')
+newTodo('create placeholder for when there are no active todos')
+newTodo('create placeholder for when there are no todos')
 
 
 app.get('/', function(req, res) {
