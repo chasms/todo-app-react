@@ -43,6 +43,16 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
 
+  const renderArchiveButton = () => {
+    if (status === 'complete') {
+      return (
+        <Button
+          text="Archive"
+        />
+      )
+    }
+  }
+
   return (
     <li className={todoCls}>
       <input
@@ -53,6 +63,7 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
       <TodoLink
         text={text}
       />
+      {renderArchiveButton()}
       <Button
         text="Delete"
         onClick={onClickDelete}
