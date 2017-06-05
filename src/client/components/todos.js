@@ -51,8 +51,18 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    *
    * @param {object} todo - Todo object
    */
-  const onClickTodo = todo => {
+  const onClickCheck = todo => {
     api('PUT', todo, updateTodos);
+  }
+
+  /**
+   * Click handler for clicking on the todo
+   * Toggles status state of Todo
+   *
+   * @param {object} todo - Todo object
+   */
+  const onClickArchive = todo => {
+    api('PATCH', todo, updateTodos);
   }
 
   /**
@@ -62,24 +72,32 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    */
   const renderTodos = () => {
     return todos.map(todo => {
-      let filtered;
-      switch (filterBy) {
-        case 'active':
-          filtered = todo.status === 'complete';
-          break;
-        case 'completed':
-          filtered = todo.status !== 'complete';
-          break;
-        default:
-          filtered = false;
+      let filtered = todo.status !== filterBy
+      if (filterBy === '') {
+        filtered = false
       }
+      // let filtered
+      // switch (filterBy) {
+      //   case 'active':
+      //     filtered = todo.status !== 'active';
+      //     break;
+      //   case 'completed':
+      //     filtered = todo.status !== 'completed';
+      //     break;
+      //   case 'archived':
+      //     filtered = todo.status !== 'archived';
+      //     break;
+      //   default:
+      //     filtered = false;
+      // }
 
       return (
         <Todo
           key={todo.id}
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
-          onClickTodo={onClickTodo.bind(this, todo)}
+          onClickCheck={onClickCheck.bind(this, todo)}
+          onClickArchive={onClickArchive.bind(this, todo)}
           status={todo.status}
           text={todo.text}
         />

@@ -18,16 +18,16 @@ function newTodo(text, status = 'active') {
   return todo
 }
 
-newTodo('fix rendering on pageload', 'complete')
-newTodo('implement server-side delete', 'complete')
-newTodo('implement server-side put', 'complete')
-newTodo('implement front end delete', 'complete')
-newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'complete')
-newTodo('implement front end put', 'complete')
-newTodo('make updates in front end state consistent with server updates', 'complete')
-newTodo('add checkbox', 'complete')
-newTodo('build front end logic for checkbox to update todo status', 'complete')
-newTodo('build front end logic for checkbox to track todo status and default correctly', 'complete')
+newTodo('fix rendering on pageload', 'completed')
+newTodo('implement server-side delete', 'completed')
+newTodo('implement server-side put', 'completed')
+newTodo('implement front end delete', 'completed')
+newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'completed')
+newTodo('implement front end put', 'completed')
+newTodo('make updates in front end state consistent with server updates', 'completed')
+newTodo('add checkbox', 'completed')
+newTodo('build front end logic for checkbox to update todo status', 'completed')
+newTodo('build front end logic for checkbox to track todo status and default correctly', 'completed')
 newTodo('implement archive function server-side')
 newTodo('add archive button')
 newTodo('implement archive front end logic')
@@ -104,7 +104,26 @@ app.put('/todos/:id', function(req, res) {
     });
   }
 
-  todos[index].status = (todos[index].status === 'active' ? 'complete' : 'active');
+  todos[index].status = (todos[index].status === 'active' ? 'completed' : 'active');
+
+  res.json(todos);
+});
+
+app.patch('/todos/:id', function(req, res) {
+  var id = parseInt(req.params.id);
+  var index = todos.findIndex( todo => {
+    return todo.id === id;
+  });
+
+  if (index < 0 || index >= todos.length) {
+    return res.status(400).json({
+      "message": `invalid id ${id} type ${typeof(id)} at index ${index}`
+    });
+  }
+
+  if (todos[index].status = 'completed') {
+    todos[index].status = 'archived';
+  }
 
   res.json(todos);
 });

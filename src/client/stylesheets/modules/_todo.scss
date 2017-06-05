@@ -2,8 +2,14 @@
 .todo {
   cursor: pointer;
 
-  &--status-complete {
+  &--status-completed {
     text-decoration: line-through;
+  }
+
+  &--status-archived {
+    text-decoration: line-through;
+    font-style: oblique;
+    color: silver;
   }
 
   &--filtered {

@@ -12,7 +12,8 @@ const noop = () => {};
 const propTypes = {
   filtered: React.PropTypes.bool,
   onClickDelete: React.PropTypes.func,
-  onClickTodo: React.PropTypes.func,
+  onClickCheck: React.PropTypes.func,
+  onClickArchive: React.PropTypes.func,
   status: React.PropTypes.string,
   text: React.PropTypes.string,
 };
@@ -24,7 +25,8 @@ const propTypes = {
 const defaultProps = {
   filtered: false,
   onClickDelete: noop,
-  onClickTodo: noop,
+  onClickCheck: noop,
+  onClickArchive: noop,
   status: '',
   text: '',
 };
@@ -33,21 +35,23 @@ const defaultProps = {
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickCheck, onClickArchive, status, text }) => {
   /**
    * Base CSS class
    */
   const baseCls = 'todo';
 
   const todoCls = baseCls
-    + (status === 'complete' ? ' todo--status-complete' : '')
+    + (status === 'completed' ? ' todo--status-completed' : '')
+    + (status === 'archived' ? ' todo--status-archived' : '')
     + (filtered ? ' todo--filtered' : '');
 
   const renderArchiveButton = () => {
-    if (status === 'complete') {
+    if (status === 'completed') {
       return (
         <Button
           text="Archive"
+          onClick={onClickArchive}
         />
       )
     }
@@ -57,8 +61,8 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
     <li className={todoCls}>
       <input
         type="checkbox"
-        onClick={onClickTodo}
-        checked={status === 'complete'}>
+        onChange={onClickCheck}
+        checked={status === 'completed'}>
       </input>
       <TodoLink
         text={text}
