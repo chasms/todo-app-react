@@ -35,7 +35,13 @@ const defaultProps = {
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickCheck, onClickArchive, status, text }) => {
+const Todo = ({
+  filtered,
+  onClickDelete,
+  onClickCheck,
+  onClickArchive,
+  status,
+  text }) => {
   /**
    * Base CSS class
    */
@@ -57,13 +63,21 @@ const Todo = ({ filtered, onClickDelete, onClickCheck, onClickArchive, status, t
     }
   }
 
+  const renderCheckbox = () => {
+    if (status !== 'archived') {
+      return (
+        <input
+          type="checkbox"
+          onChange={onClickCheck}
+          checked={status === 'completed'}>
+        </input>
+      )
+    }
+  }
+
   return (
     <li className={todoCls}>
-      <input
-        type="checkbox"
-        onChange={onClickCheck}
-        checked={status === 'completed'}>
-      </input>
+      {renderCheckbox()}
       <TodoLink
         text={text}
       />
