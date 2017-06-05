@@ -47,7 +47,8 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
     <li className={todoCls}>
       <input
         type="checkbox"
-        onClick={onClickTodo}>
+        onClick={onClickTodo}
+        checked={status === 'complete'}>
       </input>
       <TodoLink
         text={text}
