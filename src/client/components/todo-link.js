@@ -1,13 +1,10 @@
 import React from 'react';
 
-const noop = () => {};
-
 /**
  * Prop Types
  * @private
  */
 const propTypes = {
-  onClick: React.PropTypes.func,
   text: React.PropTypes.string,
 };
 
@@ -16,7 +13,6 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
-  onClick: noop,
   text: '',
 };
 
@@ -24,14 +20,14 @@ const defaultProps = {
  * Link component
  * @returns {ReactElement}
  */
-const TodoLink = ({ text, onClick }) => {
+const TodoLink = ({ text }) => {
   /**
    * Base CSS class
    */
   const baseCls = 'todo-link';
 
   return (
-    <div className={baseCls} onClick={onClick}>
+    <div className={baseCls}>
       {text}
     </div>
   );

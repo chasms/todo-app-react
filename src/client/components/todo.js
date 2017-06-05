@@ -45,9 +45,17 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
 
   return (
     <li className={todoCls}>
-      <TodoLink text={text} onClick={onClickTodo} />
-
-      <Button text="Delete" onClick={onClickDelete} />
+      <input
+        type="checkbox"
+        onClick={onClickTodo}>
+      </input>
+      <TodoLink
+        text={text}
+      />
+      <Button
+        text="Delete"
+        onClick={onClickDelete}
+      />
     </li>
   );
 }
