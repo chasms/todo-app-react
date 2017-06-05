@@ -23,10 +23,10 @@ newTodo('implement server-side delete', 'complete')
 newTodo('implement server-side put', 'complete')
 newTodo('implement front end delete', 'complete')
 newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'complete')
-newTodo('implement front end put')
+newTodo('implement front end put', 'complete')
+newTodo('make updates in front end state consistent with server updates', 'complete')
 newTodo('implement archive function server-side')
 newTodo('implement archive button and front end logic')
-newTodo('make updates in front end state consistent with server updates')
 newTodo('style front end')
 newTodo('implement routing system')
 newTodo('create placeholder for when there are no active todos')
@@ -64,9 +64,9 @@ app.post('/todos', function(req, res) {
     return res.status(400).json({"message": "text is required"});
   }
 
-  todo = newTodo(text);
+  let todo = newTodo(text);
 
-  res.json(todo);
+  res.json(todos);
 });
 
 app.delete('/todos/:id', function(req, res) {
@@ -84,7 +84,7 @@ app.delete('/todos/:id', function(req, res) {
   let todo = todos[index]
   todos.splice(index, 1)
 
-  res.json(todo);
+  res.json(todos);
 });
 
 app.put('/todos/:id', function(req, res) {
@@ -101,7 +101,7 @@ app.put('/todos/:id', function(req, res) {
 
   todos[index].status = (todos[index].status === 'active' ? 'complete' : 'active');
 
-  res.json(todos[index]);
+  res.json(todos);
 });
 
 // Node server.
