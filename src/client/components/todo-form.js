@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const noop = () => {};
 
@@ -72,6 +73,16 @@ class TodoForm extends React.Component {
           placeholder="Add new todo..."
           value={this.state.input}
         />
+        <input
+          type='submit'
+        >
+          {/* <Link
+            to="/active"
+            onClick={() => onClickFilter('active')}
+          >
+          Create New Todo
+          </Link> */}
+        </input>
       </form>
     );
   }

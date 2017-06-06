@@ -90,7 +90,19 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
     })
   }
 
-  return (
+  const placeholder = () => {
+    if (todos.length === 0) {
+      return <h1>Congrats, you've completed all of your todos!</h1>
+    } else if (filterBy && todos.findIndex( todo => todo.status === filterBy) === -1) {
+      return <h1>{`You currently have no ${filterBy} todos`}</h1>
+    } else return false
+  }
+
+  let banner = placeholder()
+
+  return ( banner ?
+    banner
+    :
     <ul className={baseCls}>
       {renderTodos()}
     </ul>

@@ -24,7 +24,7 @@ class TodosPage extends React.Component {
    * @static
    */
   static propTypes = {
-    params: React.PropTypes.object,
+    filterBy: React.PropTypes.string,
   };
 
   /**
@@ -93,10 +93,14 @@ class TodosPage extends React.Component {
   render() {
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-
-        <TodoForm onSubmit={this.addTodo} />
-
+        <Navbar
+          filterBy={this.state.filterBy}
+          onClickFilter={this.setFilterBy}
+        />
+        <TodoForm
+          onSubmit={this.addTodo}
+          onClickFilter={this.setFilterBy}
+        />
         <Todos
           filterBy={this.state.filterBy}
           todos={this.state.todos}
