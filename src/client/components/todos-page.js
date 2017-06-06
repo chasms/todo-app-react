@@ -38,7 +38,7 @@ class TodosPage extends React.Component {
 
     this.state = {
       todos: [],
-      filterBy: props.params.filter,
+      filterBy: props.filterBy,
     };
 
     this.addTodo = this.addTodo.bind(this);

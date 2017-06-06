@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import App from './components/app';
-import TodosPage from './components/todos-page';
 
 const routes = (
-  <Route path="/" component={App}>
-    <IndexRoute component={TodosPage} />
-  </Route>
+  <Router history={browserHistory}>
+    <Route path='/(:filter)' component={App} />
+  </Router>
 );
 
 export default routes;
