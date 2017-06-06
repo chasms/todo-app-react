@@ -67,6 +67,7 @@ const Todo = ({
     if (status !== 'archived') {
       return (
         <input
+          className={baseCls + '-checkbox'}
           type="checkbox"
           onChange={onClickCheck}
           checked={status === 'completed'}>

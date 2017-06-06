@@ -27,7 +27,7 @@ const App = ({ params }) => {
   return (
     <div className={baseCls}>
       <Header />
-      <TodosPage filterBy={params.filter || 'all'}/>
+      <TodosPage filterBy={params.filter || ''}/>
     </div>
   );
 };

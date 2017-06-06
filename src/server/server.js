@@ -18,27 +18,26 @@ function newTodo(text, status = 'active') {
   return todo
 }
 
-newTodo('fix rendering on pageload', 'completed')
-newTodo('implement server-side delete', 'completed')
-newTodo('implement server-side put', 'completed')
-newTodo('implement front end delete', 'completed')
-newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'completed')
-newTodo('implement front end put', 'completed')
-newTodo('make updates in front end state consistent with server updates', 'completed')
-newTodo('add checkbox', 'completed')
-newTodo('build front end logic for checkbox to update todo status', 'completed')
-newTodo('build front end logic for checkbox to track todo status and default correctly', 'completed')
-newTodo('add archive button', 'completed')
-newTodo('implement archive front end logic', 'completed')
-newTodo('implement archive server-side logic', 'completed')
-newTodo('create style for archived todos', 'completed')
-newTodo('style front end')
-newTodo('implement routing system')
-newTodo('create placeholder for when there are no active todos')
-newTodo('create placeholder for when there are no todos')
-
 
 app.get('/', function(req, res) {
+  var bundle = `//${req.hostname}:8080/public/bundle.js`;
+
+  res.render('index', {bundle});
+});
+
+app.get('/active', function(req, res) {
+  var bundle = `//${req.hostname}:8080/public/bundle.js`;
+
+  res.render('index', {bundle});
+});
+
+app.get('/completed', function(req, res) {
+  var bundle = `//${req.hostname}:8080/public/bundle.js`;
+
+  res.render('index', {bundle});
+});
+
+app.get('/archived', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
   res.render('index', {bundle});
@@ -139,3 +138,24 @@ var devServer = require('../../tools/development-server');
 var devPort = 8080;
 
 devServer.listen(devPort, '0.0.0.0', () => {});
+
+newTodo('archiving test', 'archived')
+newTodo('fix rendering on pageload', 'completed')
+newTodo('implement server-side delete', 'completed')
+newTodo('implement server-side put', 'completed')
+newTodo('implement front end delete', 'completed')
+newTodo('create a consistent method for tracking unique ids for todos so that there is no redundancy', 'completed')
+newTodo('implement front end put', 'completed')
+newTodo('make updates in front end state consistent with server updates', 'completed')
+newTodo('add checkbox', 'completed')
+newTodo('build front end logic for checkbox to update todo status', 'completed')
+newTodo('build front end logic for checkbox to track todo status and default correctly', 'completed')
+newTodo('add archive button', 'completed')
+newTodo('implement archive front end logic', 'completed')
+newTodo('implement archive server-side logic', 'completed')
+newTodo('create style for archived todos', 'completed')
+newTodo('implement routing system for filters', 'completed')
+newTodo('modify server responses to include GET \'/(:filter)\'', 'completed')
+newTodo('style front end')
+newTodo('create placeholder for when there are no active todos')
+newTodo('create placeholder for when there are no todos')

@@ -76,21 +76,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
       if (filterBy === '') {
         filtered = false
       }
-      // let filtered
-      // switch (filterBy) {
-      //   case 'active':
-      //     filtered = todo.status !== 'active';
-      //     break;
-      //   case 'completed':
-      //     filtered = todo.status !== 'completed';
-      //     break;
-      //   case 'archived':
-      //     filtered = todo.status !== 'archived';
-      //     break;
-      //   default:
-      //     filtered = false;
-      // }
-
       return (
         <Todo
           key={todo.id}
