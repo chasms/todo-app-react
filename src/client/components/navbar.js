@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import Button from './button';
+
 const noop = () => {};
 
 /**
@@ -9,6 +11,7 @@ const noop = () => {};
  */
 const propTypes = {
   filterBy: React.PropTypes.string,
+  archiveAll: React.PropTypes.func,
 };
 
 /**
@@ -17,13 +20,14 @@ const propTypes = {
  */
 const defaultProps = {
   filterBy: '',
+  archiveAll: noop,
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy }) => {
+const Navbar = ({ filterBy, archiveAll }) => {
   /**
    * Base CSS class
    */
@@ -73,6 +77,11 @@ const Navbar = ({ filterBy }) => {
       >
         Archived
       </Link>
+      <Button
+        text="Archive All Completed"
+        buttonStyle="archive-all"
+        onClick={archiveAll}
+      />
     </div>
   );
 }

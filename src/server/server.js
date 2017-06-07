@@ -9,44 +9,53 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Todos Array
 var todos = [];
+
+// Unique ID that increments with each new Todo
 var id = 1
 
+// Create New Todo Server-Side
 function newTodo(text, status = 'active') {
   let todo = {"id": id++, "text": text, "status": status}
   todos.push(todo)
   return todo
 }
 
-
+// Access App Via '/' Route
 app.get('/', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
   res.render('index', {bundle});
 });
 
+// Access App Via '/active' Route
 app.get('/active', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
   res.render('index', {bundle});
 });
 
+// Access App Via '/completed' Route
 app.get('/completed', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
   res.render('index', {bundle});
 });
 
+// Access App Via '/archived' Route
 app.get('/archived', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
   res.render('index', {bundle});
 });
 
+// Get all Todos
 app.get('/todos', function(req, res) {
   res.json(todos);
 });
 
+// Get Todo
 app.get('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);
   var index = todos.findIndex(function(todo) {
@@ -62,6 +71,7 @@ app.get('/todos/:id', function(req, res) {
   res.json(todos[index]);
 });
 
+// Add Todo
 app.post('/todos', function(req, res) {
   var text = req.body.data.text;
   if (!text) {
@@ -73,6 +83,7 @@ app.post('/todos', function(req, res) {
   res.json(todos);
 });
 
+// Delete Todo
 app.delete('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);
   var index = todos.findIndex( todo => {
@@ -91,6 +102,7 @@ app.delete('/todos/:id', function(req, res) {
   res.json(todos);
 });
 
+// Toggle Todo ('active' or 'complete')
 app.put('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);
   var index = todos.findIndex( todo => {
@@ -108,6 +120,7 @@ app.put('/todos/:id', function(req, res) {
   res.json(todos);
 });
 
+// Archive Todo
 app.patch('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);
   var index = todos.findIndex( todo => {
@@ -120,9 +133,20 @@ app.patch('/todos/:id', function(req, res) {
     });
   }
 
-  if (todos[index].status = 'completed') {
+  if (todos[index].status === 'completed') {
     todos[index].status = 'archived';
   }
+
+  res.json(todos);
+});
+
+// Archive All
+app.patch('/todos', function(req, res) {
+  todos.forEach( todo => {
+    if (todo.status === 'completed') {
+      todo.status = 'archived';
+    }
+  })
 
   res.json(todos);
 });
@@ -139,6 +163,7 @@ var devPort = 8080;
 
 devServer.listen(devPort, '0.0.0.0', () => {});
 
+// App-Building Todos
 newTodo('archiving test', 'archived')
 newTodo('fix rendering on pageload', 'completed')
 newTodo('implement server-side delete', 'completed')

@@ -25,7 +25,8 @@
     width: map-get($todo, link-width);
     height: map-get($todo, height);
     text-decoration: inherit;
-    padding-top: 10px;
+    padding-top: 15px;
+    overflow-y: scroll;
     // background-color: lightpink;
   }
 

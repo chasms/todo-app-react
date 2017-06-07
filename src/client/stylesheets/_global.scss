@@ -5,6 +5,7 @@
 body {
   background: map-get($colors, ui-light);
   margin: 0;
+  font-family: San Francisco;
 }
 
 .container {
@@ -13,6 +14,7 @@ body {
   margin-right: 5%;
   width: 90%;
   height: 100%;
+  text-align: center;
 }
 
 .display-none {

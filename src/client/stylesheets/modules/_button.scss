@@ -44,4 +44,15 @@
     border: 1px solid map-get($colors, ui-light);
   }
 
+  &--archive-all {
+    background-color: $green;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    right: 5%;
+    top: 70px;
+    color: map-get($colors, ui-light);
+    border-radius: 5px;
+    border: 1px solid map-get($colors, ui-light);
+  }
 }

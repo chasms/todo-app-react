@@ -51,6 +51,7 @@ class TodosPage extends React.Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
+    this.archiveAll = this.archiveAll.bind(this);
   }
 
   /**
@@ -70,6 +71,10 @@ class TodosPage extends React.Component {
       return;
     }
     api('POST', { text }, this.updateTodos);
+  }
+
+  archiveAll() {
+    api('PATCH', null, this.updateTodos);
   }
 
   /**
@@ -93,6 +98,7 @@ class TodosPage extends React.Component {
       <div className={TodosPage.baseCls}>
         <Navbar
           filterBy={this.props.filterBy}
+          archiveAll={this.archiveAll}
         />
         <div className="container">
           <TodoForm

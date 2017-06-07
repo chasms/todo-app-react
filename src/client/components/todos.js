@@ -97,9 +97,17 @@ const Todos = ({ filterBy, todos, updateTodos, loaded }) => {
       return loaded
     }
     if (todos.length === 0) {
-      return <h1>Congrats, you've completed all of your todos!</h1>
+      return (
+        <span className={baseCls + '-placeholder'}>
+          Congrats, you've completed all of your todos!
+        </span>
+      )
     } else if (filterBy && todos.findIndex( todo => todo.status === filterBy) === -1) {
-      return <h1>{`You currently have no ${filterBy} todos`}</h1>
+      return (
+        <span className={baseCls + '-placeholder'}>
+          {`You currently have no ${filterBy} todos.`}
+        </span>
+      )
     } else return false
   }
 
