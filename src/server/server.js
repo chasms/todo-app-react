@@ -120,6 +120,17 @@ app.put('/todos/:id', function(req, res) {
   res.json(todos);
 });
 
+// Complete All
+app.put('/todos', function(req, res) {
+  todos.forEach( todo => {
+    if (todo.status === 'active') {
+      todo.status = 'completed';
+    }
+  })
+
+  res.json(todos);
+});
+
 // Archive Todo
 app.patch('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);
@@ -186,4 +197,7 @@ newTodo('create placeholder for when there are no active todos', 'completed')
 newTodo('create placeholder for when there are no todos', 'completed')
 newTodo('implement \'loaded\' boolean in state so that placeholder text does not show up before todos are loaded', 'completed')
 newTodo('style front end', 'completed')
+newTodo('implemented \'Archive All Completed\' button', 'completed')
+newTodo('added task counter', 'completed')
+newTodo('added \'Complete All\' button', 'completed')
 newTodo('find solution for awkward behavior when todo is added while filter is not \'active\' or \'all\'')

@@ -25,7 +25,7 @@
     width: map-get($todo, link-width);
     height: map-get($todo, height);
     text-decoration: inherit;
-    padding-top: 15px;
+    padding-top: 17px;
     overflow-y: scroll;
     // background-color: lightpink;
   }
@@ -43,5 +43,9 @@
     margin-left: 5px;
     height: map-get($todo, height);
     // background-color: skyblue;
+  }
+
+  &-counter {
+    margin-right: 10px;
   }
 }

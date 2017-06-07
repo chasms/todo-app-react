@@ -21,11 +21,11 @@
 
   &__item:hover {
     text-decoration: none;
-    color: map-get($colors, ui-light);
+    color: map-get($colors, ui-dark);
   }
 
   &__item--active {
     font-weight: 700;
-    color: black;
+    color: map-get($colors, darkgray);
   }
 }

@@ -51,7 +51,10 @@ class TodosPage extends React.Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
+    this.completeAll = this.completeAll.bind(this);
     this.archiveAll = this.archiveAll.bind(this);
+    this.deleteAll = this.deleteAll.bind(this);
+    this.countActive = this.countActive.bind(this);
   }
 
   /**
@@ -73,8 +76,25 @@ class TodosPage extends React.Component {
     api('POST', { text }, this.updateTodos);
   }
 
+  /**
+  * Complete all active todos
+  */
+  completeAll() {
+    api('PUT', null, this.updateTodos);
+  }
+
+  /**
+   * Archive all completed todos
+   */
   archiveAll() {
     api('PATCH', null, this.updateTodos);
+  }
+
+  /**
+   * Deletre all archived todos
+   */
+  deleteAll() {
+    api('DELETE', null, this.updateTodos);
   }
 
   /**
@@ -87,6 +107,42 @@ class TodosPage extends React.Component {
       todos: [...json],
       loaded: true,
     });
+  }
+
+  /**
+   * Archive all completed todos
+   */
+  countActive() {
+    var counter = 0
+    this.state.todos.forEach( todo => {
+      if (todo.status === 'active') {
+        counter += 1
+      }
+    })
+    return counter
+  }
+
+  renderCounter() {
+    let count = this.countActive()
+    if (count === 0) {
+      return (
+        <span className='todo-counter'>
+          You have completed all of your tasks!
+        </span>
+      )
+    }
+    let counterText = count + (
+    count === 1 ? ' task remaining' : ' tasks remaining')
+    return (
+      <span className='todo-counter'>
+        {counterText}
+        <Button
+          text='Complete All'
+          buttonStyle='complete-all'
+          onClick={this.completeAll}
+        />
+    </span>
+    )
   }
 
   /**
@@ -105,6 +161,7 @@ class TodosPage extends React.Component {
             filterBy={this.props.filterBy}
             onSubmit={this.addTodo}
           />
+          {this.renderCounter()}
           <Todos
             filterBy={this.props.filterBy}
             todos={this.state.todos}

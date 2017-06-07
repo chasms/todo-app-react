@@ -12,5 +12,15 @@
     font-weight: 100;
     color: map-get($colors, ui-light);
     text-shadow: 0px 1px 1px map-get($colors, ui-dark);
+    transition: text-shadow .5s ease;
+    -webkit-transition: text-shadow .5s ease;
+    -moz-transition: text-shadow .5s ease;
+    -o-transition: text-shadow .5s ease;
+    -ms-transition: text-shadow .5s ease;
+  }
+
+  &__item:hover {
+    text-shadow: 0px 1px 2px map-get($colors, ui-dark),
+    0 1px 5px map-get($colors, ui-dark);
   }
 }
