@@ -12,6 +12,8 @@ const noop = () => {};
 const propTypes = {
   filterBy: React.PropTypes.string,
   archiveAll: React.PropTypes.func,
+  deleteAll: React.PropTypes.func,
+  existCompleted: React.PropTypes.bool
 };
 
 /**
@@ -21,13 +23,15 @@ const propTypes = {
 const defaultProps = {
   filterBy: '',
   archiveAll: noop,
+  deleteAll: noop,
+  existCompleted: true,
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, archiveAll }) => {
+const Navbar = ({ filterBy, archiveAll, deleteAll, existCompleted }) => {
   /**
    * Base CSS class
    */
@@ -77,9 +81,22 @@ const Navbar = ({ filterBy, archiveAll }) => {
       >
         Archived
       </Link>
+      {/* {existCompleted ? (
+        <Button
+          text="Archive All Completed"
+          buttonStyle="archive-delete-all"
+          onClick={archiveAll}
+        />
+        ):(
+        <Button
+          text="Delete All Archived"
+          buttonStyle="archive-delete-all"
+          onClick={deleteAll}
+        />
+      )} */}
       <Button
         text="Archive All Completed"
-        buttonStyle="archive-all"
+        buttonStyle="archive-delete-all"
         onClick={archiveAll}
       />
     </div>

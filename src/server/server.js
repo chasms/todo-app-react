@@ -102,6 +102,20 @@ app.delete('/todos/:id', function(req, res) {
   res.json(todos);
 });
 
+// Archive All
+app.delete('/todos', function(req, res) {
+  var ary = []
+  todos.forEach( (todo, index) => {
+    if (todo.status === 'archived') {
+      ary.push(index)
+    }
+  })
+
+  ary.forEach( val => todos.splice(val, 1) )
+
+  res.json(todos);
+});
+
 // Toggle Todo ('active' or 'complete')
 app.put('/todos/:id', function(req, res) {
   var id = parseInt(req.params.id);

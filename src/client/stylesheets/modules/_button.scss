@@ -53,7 +53,7 @@
     border: 2px solid map-get($colors, primary);
   }
 
-  &--archive-all {
+  &--archive-delete-all {
     background-color: $green;
     padding-left: 10px;
     padding-right: 10px;
@@ -71,7 +71,7 @@
     -ms-transition: all .25s ease-in-out;
   }
 
-  &--archive-all:hover {
+  &--archive-delete-all:hover {
     border: 2px solid map-get($colors, primary);
   }
 

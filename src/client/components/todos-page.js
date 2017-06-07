@@ -55,6 +55,7 @@ class TodosPage extends React.Component {
     this.archiveAll = this.archiveAll.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
     this.countActive = this.countActive.bind(this);
+    this.existCompleted = this.existCompleted.bind(this);
   }
 
   /**
@@ -110,7 +111,7 @@ class TodosPage extends React.Component {
   }
 
   /**
-   * Archive all completed todos
+   * Count all active todos
    */
   countActive() {
     var counter = 0
@@ -120,6 +121,14 @@ class TodosPage extends React.Component {
       }
     })
     return counter
+  }
+
+  /**
+   * Determine if there are any complete todos
+   */
+  existCompleted() {
+    let index = this.state.todos.indexOf( todo => todo.status === 'completed')
+    return index !== -1
   }
 
   renderCounter() {
@@ -155,6 +164,8 @@ class TodosPage extends React.Component {
         <Navbar
           filterBy={this.props.filterBy}
           archiveAll={this.archiveAll}
+          deleteAll={this.deleteAll}
+          existCompleted={this.existCompleted()}
         />
         <div className="container">
           <TodoForm
