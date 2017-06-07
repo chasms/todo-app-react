@@ -28,21 +28,28 @@ class TodosPage extends React.Component {
   };
 
   /**
+   * Default Props
+   * @private
+   */
+  static defaultProps = {
+    filterBy: '',
+  };
+
+  /**
    * Constructor
    * @constructor
    *
    * @param  {object} props - Props
    */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       todos: [],
-      filterBy: props.filterBy,
+      loaded: false,
     };
 
     this.addTodo = this.addTodo.bind(this);
-    this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
   }
 
@@ -67,15 +74,6 @@ class TodosPage extends React.Component {
   }
 
   /**
-   * Set filterBy state
-   *
-   * @param {string} filterBy - filterBy state
-   */
-  setFilterBy(filterBy) {
-    this.setState({ filterBy });
-  }
-
-  /**
    * Update todos array state
    *
    * @param  {object} json - Resulting JSON from fetch
@@ -83,6 +81,7 @@ class TodosPage extends React.Component {
   updateTodos(json) {
     this.setState({
       todos: [...json],
+      loaded: true,
     });
   }
 
@@ -94,17 +93,17 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar
-          filterBy={this.state.filterBy}
-          onClickFilter={this.setFilterBy}
+          filterBy={this.props.filterBy}
         />
         <TodoForm
+          filterBy={this.props.filterBy}
           onSubmit={this.addTodo}
-          onClickFilter={this.setFilterBy}
         />
         <Todos
-          filterBy={this.state.filterBy}
+          filterBy={this.props.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
+          loaded={this.state.loaded}
         />
       </div>
     );

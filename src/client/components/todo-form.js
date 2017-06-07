@@ -78,7 +78,6 @@ class TodoForm extends React.Component {
         >
           {/* <Link
             to="/active"
-            onClick={() => onClickFilter('active')}
           >
           Create New Todo
           </Link> */}

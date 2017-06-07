@@ -9,7 +9,6 @@ const noop = () => {};
  */
 const propTypes = {
   filterBy: React.PropTypes.string,
-  onClickFilter: React.PropTypes.func,
 };
 
 /**
@@ -18,14 +17,13 @@ const propTypes = {
  */
 const defaultProps = {
   filterBy: '',
-  onClickFilter: noop,
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, onClickFilter }) => {
+const Navbar = ({ filterBy }) => {
   /**
    * Base CSS class
    */
@@ -51,7 +49,6 @@ const Navbar = ({ filterBy, onClickFilter }) => {
         to="/"
         activeClassName={`${baseCls}__item--active`}
         className={`${baseCls}__item`}
-        onClick={() => onClickFilter('')}
       >
         All
       </Link>
@@ -59,7 +56,6 @@ const Navbar = ({ filterBy, onClickFilter }) => {
         to="/active"
         activeClassName={`${baseCls}__item--active`}
         className={`${baseCls}__item`}
-        onClick={() => onClickFilter('active')}
       >
         Active
       </Link>
@@ -67,7 +63,6 @@ const Navbar = ({ filterBy, onClickFilter }) => {
         to="/completed"
         activeClassName={`${baseCls}__item--active`}
         className={`${baseCls}__item`}
-        onClick={() => onClickFilter('completed')}
       >
         Completed
       </Link>
@@ -75,7 +70,6 @@ const Navbar = ({ filterBy, onClickFilter }) => {
         to="/archived"
         activeClassName={`${baseCls}__item--active`}
         className={`${baseCls}__item`}
-        onClick={() => onClickFilter('archived')}
       >
         Archived
       </Link>
