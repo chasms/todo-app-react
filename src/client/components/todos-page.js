@@ -90,7 +90,7 @@ class TodosPage extends React.Component {
    */
   render() {
     return (
-      <div className={this.baseCls}>
+      <div className={TodosPage.baseCls}>
         <Navbar
           filterBy={this.props.filterBy}
         />

@@ -5,7 +5,7 @@
   text-align: left;
   font-family: San Francisco;
   font-size: 18px;
-  padding-bottom: 10px;
+  display: inline-flex;
 
   &--status-completed {
     text-decoration: line-through;
@@ -22,23 +22,25 @@
   }
 
   &--link {
-    display: inline-block;
+    width: map-get($todo, link-width);
+    height: map-get($todo, height);
     text-decoration: inherit;
-    margin-left: 25px;
+    padding-top: 10px;
+    // background-color: lightpink;
   }
 
   &--checkbox {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    appearance: none;
-    -webkit-appearance: none;
+    width: map-get($todo, check-width);
+    height: map-get($todo, height);
+    // appearance: none;
+    // -webkit-appearance: none;
+    // background-color: skyblue;
   }
 
   &--checkbox-placeholder {
-    display: inline-block;
-    width: 25px;
+    width: map-get($todo, check-width);
     margin-left: 5px;
-    height: 25px;
+    height: map-get($todo, height);
+    // background-color: skyblue;
   }
 }

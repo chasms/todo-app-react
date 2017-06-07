@@ -1,4 +1,4 @@
-// Todos module
+// Button module
 .button {
   font-family: San Francisco;
   font-size: 14px;
@@ -6,13 +6,12 @@
   cursor: pointer;
 
   &--bar {
-    position: absolute;
-    right: 5%;
-    height: inherit;
+    height: map-get($todo, height);
     padding-top: 2px;
-    width: auto;
+    width: map-get($todo, button-bar-width);
     display: inline-block;
     text-align: right;
+    // background-color: lightyellow;
   }
 
   &--delete {
@@ -20,8 +19,8 @@
     outline: none;
     height: 25px;
     width: 25px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 5%;
+    margin-left: 5%;
     font-size: 24px;
     color: map-get($colors, darkgray);
     transition: color .25s ease-in-out;
@@ -38,7 +37,6 @@
 
   &--archive {
     background-color: $green;
-    height: 24px;
     padding-left: 10px;
     padding-right: 10px;
     color: map-get($colors, ui-light);

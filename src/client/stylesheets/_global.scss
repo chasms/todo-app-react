@@ -1,4 +1,7 @@
 // Global layout.
+::-webkit-scrollbar {
+	display: none;
+}
 body {
   background: map-get($colors, ui-light);
   margin: 0;
@@ -9,6 +12,7 @@ body {
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
+  height: 100%;
 }
 
 .display-none {

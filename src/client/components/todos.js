@@ -108,11 +108,10 @@ const Todos = ({ filterBy, todos, updateTodos, loaded }) => {
   return ( banner ?
     banner
     :
-    <div className={baseCls + '--wrapper'}>
-      <ul className={baseCls}>
-        {renderTodos()}
-      </ul>
-    </div>
+    <ul className={baseCls}>
+      {renderTodos()}
+      <li className={baseCls + '-spacer'}></li>
+    </ul>
   )
 };
 

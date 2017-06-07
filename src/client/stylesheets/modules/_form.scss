@@ -1,0 +1,34 @@
+// Todo-Form module
+.todo-form {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+  background-color: map-get($colors, ui-transparent);
+
+  &-input {
+    height: 25px;
+    width: 50%;
+    padding: 10px;
+    padding-left: 15px;
+    font-family: San Francisco;
+    font-size: 24px;
+    font-weight: 200;
+    border-radius: 5px;
+    border: 1px solid map-get($colors, lightgray);
+    outline: none;
+    background: -webkit-linear-gradient($lightgray, white);
+    background: -o-linear-gradient($lightgray, white);
+    background: -moz-linear-gradient($lightgray, white);
+    background: linear-gradient($lightgray, white);
+  }
+
+  &-input::placeholder {
+    color: $gray
+  }
+
+  &-submit {
+    display: none;
+  }
+}
