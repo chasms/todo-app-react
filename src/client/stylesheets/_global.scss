@@ -1,15 +1,20 @@
 // Global layout.
 body {
   background: map-get($colors, ui-light);
+  margin: 0;
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 0 20px;
-  width: 100%;
+  margin: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
 }
 
 .display-none {
   display: none !important;
+}
+
+a {
+  text-decoration: none;
 }

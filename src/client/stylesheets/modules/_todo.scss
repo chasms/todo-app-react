@@ -1,6 +1,11 @@
-// Todo module.
+// Todo module
 .todo {
   width: 100%;
+  border-bottom: 1px solid map-get($colors, lightgray);
+  text-align: left;
+  font-family: San Francisco;
+  font-size: 18px;
+  padding-bottom: 10px;
 
   &--status-completed {
     text-decoration: line-through;
@@ -14,5 +19,26 @@
 
   &--filtered {
     display: none;
+  }
+
+  &--link {
+    display: inline-block;
+    text-decoration: inherit;
+    margin-left: 25px;
+  }
+
+  &--checkbox {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  &--checkbox-placeholder {
+    display: inline-block;
+    width: 25px;
+    margin-left: 5px;
+    height: 25px;
   }
 }

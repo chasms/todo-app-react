@@ -4,9 +4,14 @@
 // Global.
 @import 'global';
 
+// Fonts
+@import 'fonts';
+
 // Modules.
 @import 'modules/app';
 @import 'modules/header';
 @import 'modules/list';
 @import 'modules/navbar';
 @import 'modules/todo';
+@import 'modules/todos';
+@import 'modules/button';

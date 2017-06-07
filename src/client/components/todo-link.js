@@ -24,7 +24,7 @@ const TodoLink = ({ text }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'todo-link';
+  const baseCls = 'todo--link';
 
   return (
     <div className={baseCls}>

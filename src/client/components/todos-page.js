@@ -69,7 +69,6 @@ class TodosPage extends React.Component {
     if (!text) {
       return;
     }
-
     api('POST', { text }, this.updateTodos);
   }
 
@@ -95,16 +94,18 @@ class TodosPage extends React.Component {
         <Navbar
           filterBy={this.props.filterBy}
         />
-        <TodoForm
-          filterBy={this.props.filterBy}
-          onSubmit={this.addTodo}
-        />
-        <Todos
-          filterBy={this.props.filterBy}
-          todos={this.state.todos}
-          updateTodos={this.updateTodos}
-          loaded={this.state.loaded}
-        />
+        <div className="container">
+          <TodoForm
+            filterBy={this.props.filterBy}
+            onSubmit={this.addTodo}
+          />
+          <Todos
+            filterBy={this.props.filterBy}
+            todos={this.state.todos}
+            updateTodos={this.updateTodos}
+            loaded={this.state.loaded}
+          />
+        </div>
       </div>
     );
   }

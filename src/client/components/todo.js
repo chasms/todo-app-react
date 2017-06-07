@@ -57,6 +57,7 @@ const Todo = ({
       return (
         <Button
           text="Archive"
+          buttonStyle="archive"
           onClick={onClickArchive}
         />
       )
@@ -67,11 +68,15 @@ const Todo = ({
     if (status !== 'archived') {
       return (
         <input
-          className={baseCls + '-checkbox'}
+          className={baseCls + '--checkbox'}
           type="checkbox"
           onChange={onClickCheck}
           checked={status === 'completed'}>
         </input>
+      )
+    } else {
+      return (
+        <div className="todo--checkbox-placeholder"></div>
       )
     }
   }
@@ -82,11 +87,14 @@ const Todo = ({
       <TodoLink
         text={text}
       />
-      {renderArchiveButton()}
-      <Button
-        text="Delete"
-        onClick={onClickDelete}
-      />
+      <div className='button--bar'>
+        {renderArchiveButton()}
+        <Button
+          text="×"
+          buttonStyle="delete"
+          onClick={onClickDelete}
+        />
+      </div>
     </li>
   );
 }

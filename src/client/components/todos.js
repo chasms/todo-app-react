@@ -31,7 +31,7 @@ const defaultProps = {
  * Todos component
  * @returns {ReactElement}
  */
-const Todos = ({ filterBy, todos, updateTodos }) => {
+const Todos = ({ filterBy, todos, updateTodos, loaded }) => {
   /**
    * Base CSS class
    */
@@ -93,6 +93,9 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
   }
 
   const placeholder = () => {
+    if (!loaded) {
+      return loaded
+    }
     if (todos.length === 0) {
       return <h1>Congrats, you've completed all of your todos!</h1>
     } else if (filterBy && todos.findIndex( todo => todo.status === filterBy) === -1) {
@@ -105,9 +108,11 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
   return ( banner ?
     banner
     :
-    <ul className={baseCls}>
-      {renderTodos()}
-    </ul>
+    <div className={baseCls + '--wrapper'}>
+      <ul className={baseCls}>
+        {renderTodos()}
+      </ul>
+    </div>
   )
 };
 
